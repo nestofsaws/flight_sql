@@ -90,7 +90,7 @@ INSERT INTO a4_flight_crew VALUES (8, 23, 'Pilot');
 INSERT INTO a4_flight_crew VALUES (4, 23, 'Co-Pilot');
 
 
-A list of crew members (i.e., first and last name) that have landed at DFW in 2014.
+# A list of crew members (i.e., first and last name) that have landed at DFW in 2014.
 
 SELECT DISTINCT CONCAT(c.f_name, ' ', c.l_name) AS 'crew members that have landed at DFW in 2014'
 FROM a4_crew_member c, a4_flight_crew fc, a4_flight f 
@@ -100,7 +100,7 @@ AND f.flight_date <= '2014-12-31'
 AND f.arr_location='DFW';
 
 
-The number of flight segments flown by a Boeing 777 in the United States since 2010.
+# The number of flight segments flown by a Boeing 777 in the United States since 2010.
 
 SELECT COUNT(a.plane_id) AS 'number of flight segments flown by a Boeing 777 in the United States since 2010'
 FROM a4_aircraft a, a4_plane p, a4_flight f
@@ -111,7 +111,7 @@ AND f.flight_date >='2010-01-01'
 AND f.domestic = 1;
 
 
-A list of all crew members that have flown an Airbus A-380 more than 3 times as its pilot or co-pilot.
+# A list of all crew members that have flown an Airbus A-380 more than 3 times as its pilot or co-pilot.
 
 SELECT CONCAT(c.f_name, ' ', c.l_name) AS 'crew members that have flown an Airbus A-380 more than 3 times as its pilot or co-pilot'
 FROM a4_crew_member c, a4_plane p, a4_flight_crew fc, a4_flight f, a4_aircraft a
@@ -122,7 +122,7 @@ GROUP BY c.f_name, c.l_name
 HAVING (COUNT(c.l_name) > 3);
 
 
-The total amount of time that a crew member identified by the crew member ID 27 has spent flying as either a pilot or co-pilot in October 2014.
+# The total amount of time that a crew member identified by the crew member ID 27 has spent flying as either a pilot or co-pilot in October 2014.
 
 SELECT SEC_TO_TIME(SUM(TIME_TO_SEC(TIMEDIFF(f.arr_time, f.dep_time)))) AS 'total amount of time that a crew member identified by the crew member ID 27 has spent flying as either a pilot or co-pilot in October 2014'
 FROM a4_flight_crew fc, a4_flight f
@@ -132,7 +132,7 @@ AND (fc.job ='Pilot' OR fc.job='Co-Pilot')
 AND (f.flight_date >= '2014-10-01' AND f.flight_date <= '2014-10-31');
 
 
-A list of crew members that have been an attendant for any segment of flight number 50.
+# A list of crew members that have been an attendant for any segment of flight number 50.
 
 SELECT DISTINCT CONCAT(c.f_name, ' ', c.l_name) AS 'crew members that have been an attendant for any segment of flight number 50'
 FROM a4_crew_member c, a4_flight f, a4_flight_crew fc
